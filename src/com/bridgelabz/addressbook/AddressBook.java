@@ -61,32 +61,32 @@ public class AddressBook {
 		Scanner sc = new Scanner(System.in);
 		ContactDetails person = null; 
 		if(addressBook.size()!=0) {
-		System.out.println("---------Persons present in the address book------");
-		for(int i=0; i<addressBook.size();i++) {
-			System.out.print(addressBook.get(i).getFirstName()+"  ");
-		}
-		System.out.println();
-		System.out.println("Enter name to see details");
-		String name = sc.next();
-
-		for(int i = 0;i < addressBook.size();i++) {
-			if(addressBook.get(i).getFirstName().equals(name)) {
-				person = addressBook.get(i);
-				break;
+			System.out.println("---------Persons present in the address book------");
+			for(int i=0; i<addressBook.size();i++) {
+				System.out.print(addressBook.get(i).getFirstName()+"  ");
 			}
-		}
-		if(person == null) {
-			System.out.println("name not found!");
-			return;
-		}
+			System.out.println();
+			System.out.println("Enter name to see details");
+			String name = sc.next();
 
-		displayContactDetails(person);
+			for(int i = 0;i < addressBook.size();i++) {
+				if(addressBook.get(i).getFirstName().equals(name)) {
+					person = addressBook.get(i);
+					break;
+				}
+			}
+			if(person == null) {
+				System.out.println("name not found!");
+				return;
+			}
+
+			displayContactDetails(person);
 		}
 		else
 		{
 			System.out.println("Add contacts to display");
 		}
-		
+
 
 	}
 
@@ -102,5 +102,21 @@ public class AddressBook {
 		System.out.println("Pin code : "+person.getPinCode());
 		System.out.println("Phone nmber : "+person.getPhoneNumber() );
 		System.out.println("Email : "+person.getEmail());
+	}
+	public void deleteContact(String name) {
+		if(addressBook.size()!=0) {
+			for(int i=0;i<addressBook.size();i++) {
+				if(addressBook.get(i).getFirstName().equals(name)) {
+					addressBook.remove(i);
+					System.out.println("Deleted details of : "+name+" successfully!");
+					return;
+				}
+			}
+			System.out.println("Name not found");
+		}
+		else
+		{
+			System.out.println("Add contacts to delete");
+		}
 	}
 }
