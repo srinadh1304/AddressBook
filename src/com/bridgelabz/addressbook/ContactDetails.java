@@ -1,7 +1,6 @@
 package com.bridgelabz.addressbook;
 
 public class ContactDetails {
-
 	private String firstName;
 	private String lastName;
 	private String address;
@@ -10,6 +9,7 @@ public class ContactDetails {
 	private String phoneNumber;
 	private int pinCode;
 	private String email;
+
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
