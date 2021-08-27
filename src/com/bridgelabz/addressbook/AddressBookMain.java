@@ -17,14 +17,14 @@ public class AddressBookMain {
 				addressBook.addPerson();
 				break;
 			case 2 :
-				System.out.println("Enter the Contact Name to Edit Details");
+				System.out.println("Enter the Contact Phone number to Edit Details");
 				addressBook.editPerson(sc.next());
 				break;
 			case 3:
 				addressBook.display();
 				break;
 			case 4:
-				System.out.println("Enter name");
+				System.out.println("Enter phone number");
 				addressBook.deleteContact(sc.next());
 				break;
 			default:
