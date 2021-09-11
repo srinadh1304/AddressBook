@@ -17,15 +17,13 @@ public class AddressBookMain {
 				addressBook.addPerson();
 				break;
 			case 2 :
-				System.out.println("Enter the contact phone number to edit");
-				addressBook.editPerson(sc.next());
+				addressBook.editPerson();
 				break;
 			case 3:
 				addressBook.display();
 				break;
 			case 4:
-				System.out.println("Enter phone number to be deleted: ");
-				addressBook.deleteContact(sc.next());
+				addressBook.deleteContact();
 				break;
 			default:
 				exit = false;
@@ -46,7 +44,7 @@ public class AddressBookMain {
 			case 1: 
 				System.out.println("Enter the address book name");
 				String name = sc.next();
-				currentBook  = new AddressBook();
+				currentBook  = new AddressBook(name);
 				addressBooks[numOfBooks] = currentBook;
 				addressBookName[numOfBooks] = name;
 				numOfBooks++;
