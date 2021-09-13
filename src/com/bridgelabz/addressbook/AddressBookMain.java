@@ -39,7 +39,7 @@ public class AddressBookMain {
 		AddressBook currentBook;
 		boolean exit1 = true;
 		while(exit1) {
-			System.out.println("Select option 1:Add address Book 2:open Address Book 3:Exit");
+			System.out.println("Select option 1:Add address Book 2:open Address Book 3:search by city or state 4:exit");
 			switch(sc.nextInt()) {
 			case 1: 
 				System.out.println("Enter the address book name");
@@ -67,6 +67,24 @@ public class AddressBookMain {
 				currentBook = addressBooks[i];
 				addressMenu(currentBook);
 				break;
+			case 3:
+				System.out.println("Select 1:search by city 2: search by state");
+				int option = sc.nextInt();
+				if(option == 1) {
+					System.out.println("enter city");
+					String city = sc.next();
+					System.out.println("enter firstName");
+					String firstName  = sc.next();
+					AddressBookMain.searchByCity(city,firstName);
+				}
+				else {
+					System.out.println("enter state");
+					String state = sc.next();
+					System.out.println("enter firstName");
+					String firstName  = sc.next();
+					AddressBookMain.searchByState(state,firstName);
+				}
+				break;
 			default:
 				exit1 = false;
 
@@ -77,5 +95,16 @@ public class AddressBookMain {
 
 		sc.close();
 
+	}
+	private static void searchByState(String state, String firstName) {
+		for(int i=0;addressBooks[i]!=null;i++) {
+			addressBooks[i].searchByState(state,firstName);
+		}
+	}
+	private static void searchByCity(String city, String firstName) {
+		for(int i=0;addressBooks[i]!=null;i++) {
+			addressBooks[i].searchByCity(city,firstName);
+		}
+		
 	}
 }

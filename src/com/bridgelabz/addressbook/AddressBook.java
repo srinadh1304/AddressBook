@@ -146,4 +146,64 @@ public class AddressBook {
 		System.out.println("Phone nmber : "+person.getPhoneNumber() );
 		System.out.println("Email : "+person.getEmail());
 	}
+	public void searchByState(String state, String firstName) {
+		boolean found=search(firstName);
+		ContactDetails person = null; 
+		if(found==true){
+			for(int i = 0;i<addressBook.size();i++) {
+				if(addressBook.get(name) != null) {
+					person = addressBook.get(name);
+					break;
+				}
+			}
+			if(person == null) {
+				System.out.println("Name not found!");
+				return;
+			}
+
+			if(person.getState().equals(state)){
+				displayContactDetails(person);
+			}
+
+			else {
+				System.out.println("No contact with same name and state found");
+				return;
+			}
+		}
+		else {
+			System.out.println("no contact found");
+			return;
+		}
+
+
+	}
+	public void searchByCity(String city, String firstName) {
+		boolean found=search(firstName);
+		ContactDetails person = null; 
+		if(found==true){
+			for(int i = 0;i<addressBook.size();i++) {
+				if(addressBook.get(name) != null) {
+					person = addressBook.get(name);
+					break;
+				}
+			}
+			if(person == null) {
+				System.out.println("Name not found in this address book");
+				return;
+			}
+
+			if(person.getCity().equals(city)){
+				displayContactDetails(person);
+			}
+
+			else {
+				System.out.println("No contact with same name and city found");
+				return;
+			}
+		}
+		else {
+			System.out.println("no contact found");
+			return;
+		}
+	}
 }
