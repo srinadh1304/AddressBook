@@ -41,7 +41,7 @@ public class AddressBookMain {
 		AddressBook currentBook;
 		boolean exit1 = true;
 		while(exit1) {
-			System.out.println("Select option 1:Add address Book 2:open Address Book  3:search person in a city or state  4 : display persons in city 5. display persons in state 6:exit");
+			System.out.println("Select option 1:Add address Book 2:open Address Book  3:search person in a city or state  4 : display persons in city 5. display persons in state 6. count persons  7:exit");
 			switch(sc.nextInt()) {
 			case 1: 
 				System.out.println("Enter the address book name");
@@ -93,6 +93,14 @@ public class AddressBookMain {
 			case 5:
 				displayPeopleByRegion(AddressBook.personByState);
 				break;
+			case 6:
+				System.out.println("Enter \n1.Display By City\n2.Display By State");
+				int countChoice = sc.nextInt();
+				if(countChoice==1)
+					countPeopleByRegion(AddressBook.personByCity);
+				else 
+					countPeopleByRegion(AddressBook.personByState);
+				break;
 			default:
 				exit1 = false;
 
@@ -102,6 +110,18 @@ public class AddressBookMain {
 
 
 		sc.close();
+
+	}
+	public static void countPeopleByRegion(HashMap<String, ArrayList<ContactDetails>> listToDisplay) {
+		ArrayList<ContactDetails> list;
+		for (String region : listToDisplay.keySet()) {
+			int count = 0;
+			list = listToDisplay.get(region);
+			for (ContactDetails person : list) {
+				count++;
+			}
+			System.out.println("Number of People in " + region+" are: "+count);
+		}
 
 	}
 	public static void personsInCity(String city) {
