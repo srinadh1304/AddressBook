@@ -1,4 +1,6 @@
 package com.bridgelabz.addressbook;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 public class AddressBookMain {
 	private static AddressBook[] addressBooks = new AddressBook[10];
@@ -39,7 +41,7 @@ public class AddressBookMain {
 		AddressBook currentBook;
 		boolean exit1 = true;
 		while(exit1) {
-			System.out.println("Select option 1:Add address Book 2:open Address Book 3:search by city or state 4:exit");
+			System.out.println("Select option 1:Add address Book 2:open Address Book  3:search person in a city or state  4 : display persons in city 5. display persons in state 6:exit");
 			switch(sc.nextInt()) {
 			case 1: 
 				System.out.println("Enter the address book name");
@@ -85,6 +87,12 @@ public class AddressBookMain {
 					AddressBookMain.searchByState(state,firstName);
 				}
 				break;
+			case 4:
+				displayPeopleByRegion(AddressBook.personByCity);
+				break;
+			case 5:
+				displayPeopleByRegion(AddressBook.personByState);
+				break;
 			default:
 				exit1 = false;
 
@@ -96,6 +104,19 @@ public class AddressBookMain {
 		sc.close();
 
 	}
+	public static void personsInCity(String city) {
+		System.out.println("Persons in city: "+city);
+		for(int i=0;addressBooks[i]!= null; i++) {
+			addressBooks[i].personsInCity(city);
+		}
+	}
+	
+	public static void personsInState(String State) {
+		System.out.println("Persons in state: "+State);
+		for(int i=0;addressBooks[i]!= null; i++) {
+			addressBooks[i].personsInState(State);
+		}
+	}
 	private static void searchByState(String state, String firstName) {
 		for(int i=0;addressBooks[i]!=null;i++) {
 			addressBooks[i].searchByState(state,firstName);
@@ -105,6 +126,17 @@ public class AddressBookMain {
 		for(int i=0;addressBooks[i]!=null;i++) {
 			addressBooks[i].searchByCity(city,firstName);
 		}
-		
+
+	}
+	public static void displayPeopleByRegion(HashMap<String, ArrayList<ContactDetails>> listToDisplay) {
+		ArrayList<ContactDetails> list;
+		for (String name : listToDisplay.keySet()) {
+			System.out.println("People residing in: " + name);
+			list = listToDisplay.get(name);
+			for (ContactDetails contact : list) {
+				System.out.println(contact);
+			}
+		}
+
 	}
 }

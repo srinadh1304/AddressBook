@@ -1,10 +1,12 @@
 package com.bridgelabz.addressbook;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class AddressBook {
 	HashMap<String,ContactDetails> addressBook;
-	private int numOfContacts = 0;
+	public static HashMap<String, ArrayList<ContactDetails>> personByCity  = new HashMap<String, ArrayList<ContactDetails>>();
+	public static HashMap<String, ArrayList<ContactDetails>> personByState = new HashMap<String, ArrayList<ContactDetails>>();private int numOfContacts = 0;
 	Scanner sc = new Scanner(System.in);
 	String name;
 	AddressBook(String name){
@@ -25,9 +27,11 @@ public class AddressBook {
 		System.out.print("Enter Address: ");
 		person1.setAddress(sc.next());
 		System.out.print("Enter City: ");
-		person1.setCity(sc.next());
+		String city=sc.next();
+		person1.setCity(city);
 		System.out.print("Enter State: ");
-		person1.setState(sc.next());
+		String state=sc.next();
+		person1.setState(state);
 		System.out.print("Enter Pin code: ");
 		person1.setPinCode(sc.nextInt());
 		System.out.print("Enter Phone nmber: ");
@@ -38,8 +42,33 @@ public class AddressBook {
 			addressBook.put(firstName,person1);
 		else
 			System.out.println("Contact with same name already exists");
+		addPersonToCity(person1);
+		addPersonToState(person1);
 		numOfContacts++;
 
+	}
+	private void addPersonToState(ContactDetails person1) {
+		if (personByState.containsKey(person1.getState())) {
+			personByState.get(person1.getState()).add(person1);
+		}
+		else {
+			ArrayList<ContactDetails> stateList = new ArrayList<ContactDetails>();
+			stateList.add(person1);
+			personByCity.put(person1.getState(), stateList);
+		}
+		
+	}
+	
+	private void addPersonToCity(ContactDetails person1) {
+		if (personByCity.containsKey(person1.getState())) {
+			personByCity.get(person1.getState()).add(person1);
+		}
+		else {
+			ArrayList<ContactDetails> cityList = new ArrayList<ContactDetails>();
+			cityList.add(person1);
+			personByCity.put(person1.getState(), cityList);
+		}
+		
 	}
 	public boolean search(String name) {
 		if(addressBook.get(name)!=null)
@@ -205,5 +234,12 @@ public class AddressBook {
 			System.out.println("no contact found");
 			return;
 		}
+	}
+	public void personsInCity(String city) {
+
+
+	}
+	public void personsInState(String state) {
+
 	}
 }
