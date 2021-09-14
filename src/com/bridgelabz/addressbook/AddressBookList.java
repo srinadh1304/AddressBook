@@ -1,0 +1,72 @@
+package com.bridgelabz.addressbook;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class AddressBookList {
+	private static HashMap<String, AddressBook> addressBooks;
+	public AddressBookList() {
+		this.addressBooks = new HashMap<>();
+	}
+	public void add(String name, AddressBook addressBook) {
+		addressBooks.put(name,addressBook);
+		
+	}
+	public AddressBook get(String book) {
+		return addressBooks.get(book);
+	}
+	
+	public void searchAcrossByCity(String city) {
+		for(AddressBook addressBook : addressBooks.values()) {
+			addressBook.findContactInCity(city);
+		}
+	}
+	
+	public void searchAcrossByState(String state) {
+		for(AddressBook addressBook : addressBooks.values()) {
+			addressBook.findContactInState(state);
+		}
+	}
+	public void countByState() {
+		for(AddressBook addressBook : addressBooks.values()) {
+			addressBook.printCountByState();
+		}
+		
+	}
+
+
+	public void countByCity() {
+		for(AddressBook addressBook : addressBooks.values()) {
+			addressBook.printCountByCity();
+		}		
+	}
+	
+	public static void addressMenu(AddressBook addressBook) {
+		Scanner sc = new Scanner(System.in);
+		int option = 0;
+		boolean exit = true;
+		while(exit) {
+			System.out.println("Select option 1: Add Contact.  2: Edit Existing Contact. 3:Delete contact. 4.Exit");
+			option  = sc.nextInt();
+			switch(option) {
+			case 1 :
+				addressBook.addContact();
+				break;
+			case 2 :
+				System.out.println("Enter the details to edit");
+				addressBook.editContact();
+				break;
+			case 3:
+				System.out.println("Enter the details to edit: ");
+				addressBook.deleteContact();
+				break;
+			default:
+				exit = false;
+
+			}
+			System.out.println();
+		}
+	}
+
+
+	
+}
